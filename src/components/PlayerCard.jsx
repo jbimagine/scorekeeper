@@ -81,13 +81,16 @@ export default class PlayerCard extends React.Component {
         this.setState({incrementBy: parseInt(event.target.value)});
     }
 
-    handleIncrementedValue = (key) => {
-        let value = this.state.value;
-        console.log(this[key].textContent)
+    handleValue = (key, increment = false) => {
         let numValue = parseInt(this[key].textContent);
-        console.log({numValue});
-        this.setState({[key]: numValue += this.state.incrementBy })
-        console.log('key',this.state[key]);
+        if (increment) {
+            this.setState({[key]: numValue += this.state.incrementBy })
+        }
+        else {
+            if (numValue > 0) {
+                this.setState({[key]: numValue -= this.state.incrementBy })
+            }
+        }
     }
 
     render() {
@@ -99,10 +102,10 @@ export default class PlayerCard extends React.Component {
                 let players = this.props.createPlayers()[key];
                 return (
                 <MainCntnr key = { key } >
-                    <IconCntnr><Icon name='minusCirleIcon'/></IconCntnr>
+                    <IconCntnr onClick={() => this.handleValue(key)} ><Icon name='minusCirleIcon'/></IconCntnr>
                     <PlayerName >{Object.keys(players)}</PlayerName>
                     <PlayerScore ref={el => this[key] = el}>{ this.state[key] ? this.state[key] : 0 }</PlayerScore>
-                    <IconCntnr onClick={() => this.handleIncrementedValue(key)}><Icon name='plusCircleIcon'/></IconCntnr>
+                    <IconCntnr onClick={() => this.handleValue(key, true)} ><Icon name='plusCircleIcon'/></IconCntnr>
                 </MainCntnr>
                 )
             } )
