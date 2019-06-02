@@ -48,7 +48,7 @@ export default class IncrementBy extends React.Component {
         return (
             <>
             <IncremetnCntnr><IncrementBody>
-            <IncrementContent>Increment By:</IncrementContent>
+            <IncrementContent>Increment Of:</IncrementContent>
             <Input type='number'  value = { incrementBy } onChange = { this.props.handleChange }  justifyItems= 'end' />
             </IncrementBody></IncremetnCntnr>
             </>
