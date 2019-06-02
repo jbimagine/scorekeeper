@@ -80,12 +80,7 @@ export default class PlayerCard extends React.Component {
             this[key].rounds = [];
         }
 
-        if (increment) {
-            this[key].rounds.push(this.props.incrementBy);
-        }
-        else {
-            this[key].rounds.push(- + this.props.incrementBy);
-        }
+        increment ? this[key].rounds.push(this.props.incrementBy) : this[key].rounds.push(- + this.props.incrementBy);
 
         // Add up the values in the array to get the sum that is displayed in the dom
         let sumOfRounds = this[key].rounds.reduce((a, b) => { return a + b; }, 0)
