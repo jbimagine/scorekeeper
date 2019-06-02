@@ -46,9 +46,12 @@ export default class Main extends React.Component {
                 incrementPlayers = { this.incrementPlayers }
                 resetPlayersCount = { this.resetPlayersCount }
             />
-            <PlayerCard 
+            {
+                this.state.playersCount > 0 ?
+                <PlayerCard 
                 createPlayers = { this.createPlayers }
-            />
+            />:null
+            }
           </>
         );
     }
