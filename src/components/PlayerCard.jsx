@@ -82,6 +82,10 @@ export default class PlayerCard extends React.Component {
     }
 
     handleValue = (key, increment = false) => {
+        if(!this[key].values) {
+            this[key].values = [];
+        }
+
         let numValue = parseInt(this[key].textContent);
         if (increment) {
             this.setState({[key]: numValue += this.state.incrementBy })
@@ -91,6 +95,7 @@ export default class PlayerCard extends React.Component {
                 this.setState({[key]: numValue -= this.state.incrementBy })
             }
         }
+        this[key].values.push(this[key].textContent);
     }
 
     render() {
