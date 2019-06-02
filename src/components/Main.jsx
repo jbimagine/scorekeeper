@@ -1,13 +1,12 @@
 import React from 'react';
-import styled from 'styled-components/macro';
 import HeaderContent from './HeaderContent.jsx';
 import PlayerCard from './PlayerCard.jsx';
-import Icon from '../icons/index';
+import IncrementBy from './IncrementBy.jsx';
 
 export default class Main extends React.Component {
     state = {
         playersCount: 0,
-
+        incrementBy: 10,
     }
 
     incrementPlayers = () => {
@@ -39,6 +38,10 @@ export default class Main extends React.Component {
         this.setState({playersCount: 0})
     }
 
+    handleChange = (event) => {
+        this.setState({incrementBy: parseInt(event.target.value)});
+    }
+
     render() {
       return (
           <>
@@ -50,8 +53,13 @@ export default class Main extends React.Component {
                 this.state.playersCount > 0 ?
                 <PlayerCard 
                 createPlayers = { this.createPlayers }
+                incrementBy = { this.state.incrementBy }
             />:null
             }
+            <IncrementBy 
+                handleChange = { this.handleChange }
+                incrementBy = { this.state.incrementBy }
+            />
           </>
         );
     }

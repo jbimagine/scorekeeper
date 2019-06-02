@@ -73,23 +73,18 @@ const Input = styled.input `
 
 export default class PlayerCard extends React.Component {
     state = {
-        incrementBy: 10,
     }
-
-    handleChange = (event) => {
-        this.setState({incrementBy: parseInt(event.target.value)});
-    }
-
+    
     handleValue = (key, increment = false) => {
         if(!this[key].rounds) {
             this[key].rounds = [];
         }
 
         if (increment) {
-            this[key].rounds.push(this.state.incrementBy);
+            this[key].rounds.push(this.props.incrementBy);
         }
         else {
-            this[key].rounds.push(- + this.state.incrementBy);
+            this[key].rounds.push(- + this.props.incrementBy);
         }
 
         // Add up the values in the array to get the sum that is displayed in the dom
@@ -99,7 +94,6 @@ export default class PlayerCard extends React.Component {
     }
 
     render() {
-        const { incrementBy } = this.state;
         return (
             <>
             {
@@ -115,10 +109,6 @@ export default class PlayerCard extends React.Component {
                 )
             } )
             }
-            <IncremetnCntnr><IncrementBody>
-            <IncrementContent>Increment By:</IncrementContent>
-            <Input type='number'  value = { incrementBy } onChange = { this.handleChange }  justifyItems= 'end' />
-            </IncrementBody></IncremetnCntnr>
             </>
         );
     }
