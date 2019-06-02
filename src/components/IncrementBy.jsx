@@ -1,13 +1,15 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
+export const IncrementFooterHeight = 80;
+
 const IncremetnCntnr = styled.div `
     width: 100vw;
     display: flex;
     justify-content: center;
-    position: absolute;
-    bottom: 24px;
+    position: relative;
     color: #FFF;
+    height: ${IncrementFooterHeight}px;
 `;
 
 const IncrementBody = styled.div `

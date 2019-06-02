@@ -2,6 +2,18 @@ import React from 'react';
 import HeaderContent from './HeaderContent.jsx';
 import PlayerCard from './PlayerCard.jsx';
 import IncrementBy from './IncrementBy.jsx';
+import styled from 'styled-components/macro';
+import { IncrementFooterHeight } from './IncrementBy.jsx';
+import { HeaderHeight } from './HeaderContent.jsx';
+
+const PlayerContainerMargin = 24;
+const CombinedHeight = HeaderHeight + IncrementFooterHeight + PlayerContainerMargin;
+
+const PlayerCntnr = styled.div `
+    height: calc(100vh - ${CombinedHeight}px );
+    overflow: scroll;
+    margin-bottom: ${PlayerContainerMargin}px;
+`;
 
 export default class Main extends React.Component {
     state = {
@@ -49,6 +61,7 @@ export default class Main extends React.Component {
                 incrementPlayers = { this.incrementPlayers }
                 resetPlayersCount = { this.resetPlayersCount }
             />
+            <PlayerCntnr>
             {
                 this.state.playersCount > 0 ?
                 <PlayerCard 
@@ -56,6 +69,7 @@ export default class Main extends React.Component {
                 incrementBy = { this.state.incrementBy }
             />:null
             }
+            </PlayerCntnr>
             <IncrementBy 
                 handleChange = { this.handleChange }
                 incrementBy = { this.state.incrementBy }

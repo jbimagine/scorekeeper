@@ -3,8 +3,10 @@ import styled from 'styled-components/macro';
 
 import Icon from '../icons/index';
 
+export const HeaderHeight = 80;
+
 const MainCntnr = styled.div `
-  height: 80px;
+  height: ${HeaderHeight}px;
   width: 100vw;
   ${'' /* background: blue; */}
   display: grid;
