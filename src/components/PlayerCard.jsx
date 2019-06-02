@@ -93,10 +93,9 @@ export default class PlayerCard extends React.Component {
         }
 
         // Add up the values in the array to get the sum that is displayed in the dom
-        let sumOfRounds = this[key].rounds.reduce((a, b) => { return a + b; },0)
+        let sumOfRounds = this[key].rounds.reduce((a, b) => { return a + b; }, 0)
 
         this.setState({[key] : sumOfRounds});
-
     }
 
     render() {
