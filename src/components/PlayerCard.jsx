@@ -74,7 +74,6 @@ const Input = styled.input `
 export default class PlayerCard extends React.Component {
     state = {
         incrementBy: 10,
-        value: 0,
     }
 
     handleChange = (event) => {
@@ -82,20 +81,22 @@ export default class PlayerCard extends React.Component {
     }
 
     handleValue = (key, increment = false) => {
-        if(!this[key].values) {
-            this[key].values = [];
+        if(!this[key].rounds) {
+            this[key].rounds = [];
         }
 
-        let numValue = parseInt(this[key].textContent);
         if (increment) {
-            this.setState({[key]: numValue += this.state.incrementBy })
+            this[key].rounds.push(this.state.incrementBy);
         }
         else {
-            if (numValue > 0) {
-                this.setState({[key]: numValue -= this.state.incrementBy })
-            }
+            this[key].rounds.push(- + this.state.incrementBy);
         }
-        this[key].values.push(this[key].textContent);
+
+        // Add up the values in the array to get the sum that is displayed in the dom
+        let sumOfRounds = this[key].rounds.reduce((a, b) => { return a + b; },0)
+
+        this.setState({[key] : sumOfRounds});
+
     }
 
     render() {
