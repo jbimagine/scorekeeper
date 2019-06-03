@@ -6,6 +6,7 @@ import ResetIcon from './ResetIcon';
 import RoundsIcon from './RoundsIcon';
 import PlusCircleIcon from './PlusCircleIcon';
 import MinusCirleIcon from './MinusCirleIcon';
+import SettingsIcon from './SettingsIcon';
 
 const Icon = props => {
     switch (props.name) {
@@ -19,6 +20,8 @@ const Icon = props => {
         return <PlusCircleIcon {...props} />;
     case "minusCirleIcon":
         return <MinusCirleIcon {...props} />;
+    case "settingsIcon":
+        return <SettingsIcon {...props} />;
       default:
         return;
     }

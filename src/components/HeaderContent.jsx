@@ -50,8 +50,9 @@ export default class HeaderContent extends React.Component {
   render() {
     return (
         <MainCntnr>
-          <SettingsCntnr gridColumns={'1fr'}>
-          <IconCntnr><Icon name='roundsIcon'/></IconCntnr>
+          <SettingsCntnr >
+          <IconCntnr justifyContent= 'flex-start'><Icon name='roundsIcon'/></IconCntnr>
+          <IconCntnr><Icon name='settingsIcon'/></IconCntnr>
           </SettingsCntnr>
           <TitleCntnr>
             <Title>Scorekeeper</Title>
