@@ -75,17 +75,17 @@ export default class PlayerCard extends React.Component {
     state = {
     }
     
-    handleValue = (key, increment = false) => {
-        if(!this[key].rounds) {
-            this[key].rounds = [];
+    handleValue = (player, increment = false) => {
+        if(!this[player].rounds) {
+            this[player].rounds = [];
         }
 
-        increment ? this[key].rounds.push(this.props.incrementBy) : this[key].rounds.push(- + this.props.incrementBy);
+        increment ? this[player].rounds.push(this.props.incrementBy) : this[player].rounds.push(- + this.props.incrementBy);
 
         // Add up the values in the array to get the sum that is displayed in the dom
-        let sumOfRounds = this[key].rounds.reduce((a, b) => { return a + b; }, 0)
+        let sumOfRounds = this[player].rounds.reduce((a, b) => { return a + b; }, 0)
 
-        this.setState({[key] : sumOfRounds});
+        this.setState({[player] : sumOfRounds});
     }
 
     render() {
@@ -93,13 +93,14 @@ export default class PlayerCard extends React.Component {
             <>
             {
             Object.keys(this.props.createPlayers()).map(key => {
-                let players = this.props.createPlayers()[key];
+                let player = Object.keys(this.props.createPlayers()[key]);
+                console.log({player});
                 return (
-                <MainCntnr key = { key } >
-                    <IconCntnr onClick={() => this.handleValue(key)} ><Icon name='minusCirleIcon'/></IconCntnr>
-                    <PlayerName >{Object.keys(players)}</PlayerName>
-                    <PlayerScore ref={el => this[key] = el}>{ this.state[key] ? this.state[key] : 0 }</PlayerScore>
-                    <IconCntnr onClick={() => this.handleValue(key, true)} ><Icon name='plusCircleIcon'/></IconCntnr>
+                <MainCntnr player = { player } >
+                    <IconCntnr onClick={() => this.handleValue(player)} ><Icon name='minusCirleIcon'/></IconCntnr>
+                    <PlayerName >{player[0]}</PlayerName>
+                    <PlayerScore ref={el => this[player] = el}>{ this.state[player] ? this.state[player] : 0 }</PlayerScore>
+                    <IconCntnr onClick={() => this.handleValue(player, true)} ><Icon name='plusCircleIcon'/></IconCntnr>
                 </MainCntnr>
                 )
             } )
