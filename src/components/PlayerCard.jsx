@@ -94,7 +94,6 @@ export default class PlayerCard extends React.Component {
             {
             Object.keys(this.props.createPlayers()).map(key => {
                 let player = Object.keys(this.props.createPlayers()[key]);
-                console.log({player});
                 return (
                 <MainCntnr player = { player } >
                     <IconCntnr onClick={() => this.handleValue(player)} ><Icon name='minusCirleIcon'/></IconCntnr>
