@@ -26,9 +26,7 @@ export default class Main extends React.Component {
     }
 
      padNumber = (number) => {
-   
         return (number < 10 ? '0' : '') + number
-      
    }
 
     addPlayers = () => {
