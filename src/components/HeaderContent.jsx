@@ -5,7 +5,7 @@ import Icon from '../icons/index';
 
 export const HeaderHeight = 80;
 
-const MainCntnr = styled.div `
+const MainCntnr = styled.div`
   height: ${HeaderHeight}px;
   width: 100vw;
   ${'' /* background: blue; */}
@@ -17,29 +17,29 @@ const MainCntnr = styled.div `
   font-size: 24px;
 `;
 
-const TitleCntnr = styled.div `
+const TitleCntnr = styled.div`
   ${'' /* background: red; */}
   display: grid;
   justify-items: center;
   align-content: center;
 `;
 
-const Title = styled.div `
+const Title = styled.div`
 `;
 
-const SettingsCntnr = styled.div `
+const SettingsCntnr = styled.div`
   ${'' /* background: purple; */}
   display: grid;
-  grid-template-columns: ${props=> props.gridColumns ? props.gridColumns: '1fr 1fr'};
+  grid-template-columns: ${props => props.gridColumns ? props.gridColumns : '1fr 1fr'};
   justify-items: center;
   align-items: center;
 `;
 
-const IconCntnr = styled.div `
+const IconCntnr = styled.div`
     height: 100%;
     width: 100%;
     display: flex;
-    justify-content: ${props=> props.justifyContent ? props.justifyContent : 'center'};
+    justify-content: ${props => props.justifyContent ? props.justifyContent : 'center'};
     align-items: center;
     ${'' /* &:last-child {
         background: brown;
@@ -47,21 +47,30 @@ const IconCntnr = styled.div `
 `;
 
 export default class HeaderContent extends React.Component {
-  render() {
-    return (
-        <MainCntnr>
-          <SettingsCntnr >
-          <IconCntnr justifyContent= 'flex-start'><Icon name='roundsIcon'/></IconCntnr>
-          <IconCntnr><Icon name='settingsIcon'/></IconCntnr>
-          </SettingsCntnr>
-          <TitleCntnr>
-            <Title>Scorekeeper</Title>
-          </TitleCntnr>
-          <SettingsCntnr>
-          <IconCntnr onClick = {() => this.props.resetPlayersCount()} ><Icon name='resetIcon'/></IconCntnr>
-          <IconCntnr justifyContent= 'flex-end' onClick = {() => this.props.incrementPlayers()} ><Icon name='plusIcon' /></IconCntnr>
-          </SettingsCntnr>
-        </MainCntnr>
-      );
-  }
+	render() {
+		return (
+			<MainCntnr>
+				<SettingsCntnr >
+					<IconCntnr justifyContent='flex-start'><Icon name='roundsIcon' /></IconCntnr>
+					<IconCntnr><Icon name='settingsIcon' /></IconCntnr>
+				</SettingsCntnr>
+				<TitleCntnr>
+					<Title>Scorekeeper</Title>
+				</TitleCntnr>
+				<SettingsCntnr>
+					<IconCntnr
+						onClick={() => this.props.resetPlayersCount()}
+					>
+						<Icon name='resetIcon' />
+					</IconCntnr>
+					<IconCntnr
+						justifyContent='flex-end'
+						onClick={() => this.props.incrementPlayers()}
+					>
+						<Icon name='plusIcon' />
+					</IconCntnr>
+				</SettingsCntnr>
+			</MainCntnr>
+		);
+	}
 }
