@@ -101,7 +101,7 @@ export default class PlayerCard extends React.Component {
                                 <IconCntnr
                                     onClick={() => this.handleValue(player)}
                                 >
-                                    <Icon name='minusCirleIcon' />
+                                    <Icon name='minusCirleIcon' style={{cursor: 'pointer'}} />
                                 </IconCntnr>
                                 <PlayerName>{player[0]}</PlayerName>
                                 <PlayerScore
@@ -112,7 +112,7 @@ export default class PlayerCard extends React.Component {
                                 <IconCntnr
                                     onClick={() => this.handleValue(player, true)}
                                 >
-                                    <Icon name='plusCircleIcon' />
+                                    <Icon name='plusCircleIcon' style={{cursor: 'pointer'}} />
                                 </IconCntnr>
                             </MainCntnr>
                         )
