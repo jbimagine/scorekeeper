@@ -18,13 +18,9 @@ const PlayerCntnr = styled.div`
 
 export default class Main extends React.Component {
     state = {
-        playersCount: 1,
+        playersCount: 0,
         incrementBy: DEFAULT_INCREMENT_NUM,
         playersCards: {},
-    }
-
-    incrementPlayers = () => {
-        this.setState({ playersCount: this.state.playersCount + 1 });
     }
 
     // adds a zero to the front of any player's number less than 10
@@ -34,8 +30,9 @@ export default class Main extends React.Component {
     }
 
     createPlayersCards = () => {
-        this.incrementPlayers();
-        const { playersCount } = this.state;
+        let playersCount = this.state.playersCount;
+
+        playersCount += 1;
         let playersCards = { ...this.state.playersCards };
         playersCards = Object.assign(playersCards, {
             ...playersCards,
@@ -44,7 +41,7 @@ export default class Main extends React.Component {
                 rounds: {},
             }
         })
-        this.setState({ playersCards });
+        this.setState({ playersCards, playersCount });
     }
 
     resetPlayersData = () => {
