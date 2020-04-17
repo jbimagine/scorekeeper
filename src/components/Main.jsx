@@ -6,7 +6,8 @@ import styled from 'styled-components/macro';
 import { IncrementFooterHeight } from './IncrementBy.jsx';
 import { HeaderHeight } from './HeaderContent.jsx';
 
-const PlayerContainerMargin = 24;
+const PlayerContainerMargin = 40;
+const DEFAULT_INCREMENT_NUM = '10';
 const CombinedHeight = HeaderHeight + IncrementFooterHeight + PlayerContainerMargin;
 
 const PlayerCntnr = styled.div`
@@ -18,7 +19,7 @@ const PlayerCntnr = styled.div`
 export default class Main extends React.Component {
     state = {
         playersCount: 0,
-        incrementBy: 10,
+        incrementBy: DEFAULT_INCREMENT_NUM,
     }
 
     incrementPlayers = () => {
@@ -49,7 +50,15 @@ export default class Main extends React.Component {
     }
 
     handleChange = (event) => {
-        this.setState({ incrementBy: parseInt(event.target.value) });
+        this.setState({ incrementBy: event.target.value});
+    }
+
+    handleBlur = () => {
+        const { incrementBy } = this.state;
+
+        if (incrementBy === '') {
+            this.setState({ incrementBy: DEFAULT_INCREMENT_NUM });
+        }
     }
 
     render() {
@@ -69,6 +78,7 @@ export default class Main extends React.Component {
                     }
                 </PlayerCntnr>
                 <IncrementBy
+                    handleBlur={this.handleBlur}
                     handleChange={this.handleChange}
                     incrementBy={this.state.incrementBy}
                 />

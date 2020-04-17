@@ -76,11 +76,13 @@ export default class PlayerCard extends React.Component {
     }
 
     handleValue = (player, increment = false) => {
+        const { incrementBy } = this.props;
         if (!this[player].rounds) {
             this[player].rounds = [];
         }
+        const convertedIncrementOf = parseInt(incrementBy);
 
-        increment ? this[player].rounds.push(this.props.incrementBy) : this[player].rounds.push(- + this.props.incrementBy);
+        increment ? this[player].rounds.push(convertedIncrementOf) : this[player].rounds.push(- + convertedIncrementOf);
 
         // Add up the values in the array to get the sum that is displayed in the dom
         let sumOfRounds = this[player].rounds.reduce((a, b) => { return a + b; }, 0)
