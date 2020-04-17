@@ -51,8 +51,8 @@ export default class HeaderContent extends React.Component {
 		return (
 			<MainCntnr>
 				<SettingsCntnr >
-					<IconCntnr justifyContent='flex-start'><Icon name='roundsIcon' /></IconCntnr>
-					<IconCntnr><Icon name='settingsIcon' /></IconCntnr>
+					<IconCntnr justifyContent='flex-start'><Icon name='roundsIcon' style={{cursor: 'pointer'}} /></IconCntnr>
+					<IconCntnr><Icon name='settingsIcon' style={{cursor: 'pointer'}} /></IconCntnr>
 				</SettingsCntnr>
 				<TitleCntnr>
 					<Title>Scorekeeper</Title>
@@ -61,13 +61,13 @@ export default class HeaderContent extends React.Component {
 					<IconCntnr
 						onClick={() => this.props.resetPlayersCount()}
 					>
-						<Icon name='resetIcon' />
+						<Icon name='resetIcon' style={{cursor: 'pointer'}} />
 					</IconCntnr>
 					<IconCntnr
 						justifyContent='flex-end'
 						onClick={() => this.props.incrementPlayers()}
 					>
-						<Icon name='plusIcon' />
+						<Icon name='plusIcon' style={{cursor: 'pointer'}} />
 					</IconCntnr>
 				</SettingsCntnr>
 			</MainCntnr>

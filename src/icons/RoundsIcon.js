@@ -14,6 +14,7 @@ const SVG = ({
             height={height}
             viewBox={viewBox}
             fill={fill}
+            style={style}
             xmlns="http://www.w3.org/2000/svg">
             <mask
                 id="path-1-outside-1"
