@@ -56,7 +56,7 @@ export default class HeaderContent extends React.Component {
 		const {
 			createPlayersCards,
 			currentRound,
-			resetPlayersData,
+			handleShowingResetWarningModal,
 		} = this.props;
 
 		return (
@@ -70,7 +70,7 @@ export default class HeaderContent extends React.Component {
 				</TitleCntnr>
 				<SettingsCntnr>
 					<IconCntnr
-						onClick={() => resetPlayersData()}
+						onClick={() => handleShowingResetWarningModal()}
 					>
 						<Icon name='resetIcon' style={{ cursor: 'pointer' }} />
 					</IconCntnr>

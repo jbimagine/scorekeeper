@@ -5,6 +5,7 @@ import IncrementBy from './IncrementBy.jsx';
 import styled from 'styled-components/macro';
 import { IncrementFooterHeight } from './IncrementBy.jsx';
 import { HeaderHeight } from './HeaderContent.jsx';
+import YesNoModal from './YesNoModal.jsx';
 import { padNumber } from '../utils/utils';
 
 const PlayerContainerMargin = 40;
@@ -23,6 +24,7 @@ export default class Main extends React.Component {
         incrementBy: DEFAULT_INCREMENT_NUM,
         playersCards: {},
         currentRound: 1,
+        showResetModal: false,
     }
 
     createPlayersCards = () => {
@@ -42,6 +44,7 @@ export default class Main extends React.Component {
 
     resetPlayersData = () => {
         this.setState({ playersCards: {}, playersCount: 0 })
+        this.handleHidingResetWarningModal();
     }
 
     getCurrentRound = () => {
@@ -60,18 +63,35 @@ export default class Main extends React.Component {
         }
     }
 
+    handleShowingResetWarningModal = () => {
+        const { playersCount } = this.state;
+        if (playersCount > 0) {
+            this.setState({ showResetModal: true });
+        }
+    }
+
+    handleHidingResetWarningModal = () => {
+        this.setState({ showResetModal: false });
+    }
+
     render() {
         const {
             currentRound,
             incrementBy,
-            playersCards
+            playersCards,
+            showResetModal,
         } = this.state;
 
         return (
             <React.Fragment>
+                {showResetModal && <YesNoModal
+                    text={`Are you sure you want to reset?  Doing so will erase all player data.`}
+                    yes={this.resetPlayersData}
+                    no={this.handleHidingResetWarningModal}
+                />}
                 <HeaderContent
-                    resetPlayersData={this.resetPlayersData}
                     createPlayersCards={this.createPlayersCards}
+                    handleShowingResetWarningModal={this.handleShowingResetWarningModal}
                     currentRound={currentRound}
                 />
                 <PlayerCntnr>
