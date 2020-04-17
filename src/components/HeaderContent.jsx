@@ -48,26 +48,28 @@ const IconCntnr = styled.div`
 
 export default class HeaderContent extends React.Component {
 	render() {
+		const { createPlayersCards, resetPlayersData } = this.props;
+
 		return (
 			<MainCntnr>
 				<SettingsCntnr >
-					<IconCntnr justifyContent='flex-start'><Icon name='roundsIcon' style={{cursor: 'pointer'}} /></IconCntnr>
-					<IconCntnr><Icon name='settingsIcon' style={{cursor: 'pointer'}} /></IconCntnr>
+					<IconCntnr justifyContent='flex-start'><Icon name='roundsIcon' style={{ cursor: 'pointer' }} /></IconCntnr>
+					<IconCntnr><Icon name='settingsIcon' style={{ cursor: 'pointer' }} /></IconCntnr>
 				</SettingsCntnr>
 				<TitleCntnr>
 					<Title>Scorekeeper</Title>
 				</TitleCntnr>
 				<SettingsCntnr>
 					<IconCntnr
-						onClick={() => this.props.resetPlayersCount()}
+						onClick={() => resetPlayersData()}
 					>
-						<Icon name='resetIcon' style={{cursor: 'pointer'}} />
+						<Icon name='resetIcon' style={{ cursor: 'pointer' }} />
 					</IconCntnr>
 					<IconCntnr
 						justifyContent='flex-end'
-						onClick={() => this.props.incrementPlayers()}
+						onClick={() => createPlayersCards()}
 					>
-						<Icon name='plusIcon' style={{cursor: 'pointer'}} />
+						<Icon name='plusIcon' style={{ cursor: 'pointer' }} />
 					</IconCntnr>
 				</SettingsCntnr>
 			</MainCntnr>

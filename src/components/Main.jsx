@@ -18,8 +18,9 @@ const PlayerCntnr = styled.div`
 
 export default class Main extends React.Component {
     state = {
-        playersCount: 0,
+        playersCount: 1,
         incrementBy: DEFAULT_INCREMENT_NUM,
+        playersCards: {},
     }
 
     incrementPlayers = () => {
@@ -32,22 +33,26 @@ export default class Main extends React.Component {
         return (number < 10 ? '0' : '') + number
     }
 
-    createPlayers = () => {
-        let numArray = [];
-        let player = 0;
-        for (let i = 0; i < this.state.playersCount; i++) {
-            player += 1;
-            numArray.push({ ['Player ' + this.padNumber(player)]: i + 1 });
-        }
-        return numArray;
+    createPlayersCards = () => {
+        this.incrementPlayers();
+        const { playersCount } = this.state;
+        let playersCards = { ...this.state.playersCards };
+        playersCards = Object.assign(playersCards, {
+            ...playersCards,
+            [playersCount]: {
+                label: 'Player ' + this.padNumber(playersCount),
+                rounds: {},
+            }
+        })
+        this.setState({ playersCards });
     }
 
-    resetPlayersCount = () => {
-        this.setState({ playersCount: 0 })
+    resetPlayersData = () => {
+        this.setState({ playersCards: {}, playersCount: 0 })
     }
 
     handleChange = (event) => {
-        this.setState({ incrementBy: event.target.value});
+        this.setState({ incrementBy: event.target.value });
     }
 
     handleBlur = () => {
@@ -60,26 +65,25 @@ export default class Main extends React.Component {
 
     render() {
         return (
-            <>
+            <React.Fragment>
                 <HeaderContent
-                    incrementPlayers={this.incrementPlayers}
-                    resetPlayersCount={this.resetPlayersCount}
+                    resetPlayersData={this.resetPlayersData}
+                    createPlayersCards={this.createPlayersCards}
                 />
                 <PlayerCntnr>
-                    {
-                        this.state.playersCount > 0 ?
-                            <PlayerCard
-                                createPlayers={this.createPlayers}
-                                incrementBy={this.state.incrementBy}
-                            /> : null
-                    }
+                    {this.state.playersCount > 0 ?
+                        <PlayerCard
+                            createPlayersCards={this.createPlayersCards}
+                            incrementBy={this.state.incrementBy}
+                            playersCards={this.state.playersCards}
+                        /> : null}
                 </PlayerCntnr>
                 <IncrementBy
                     handleBlur={this.handleBlur}
                     handleChange={this.handleChange}
                     incrementBy={this.state.incrementBy}
                 />
-            </>
+            </React.Fragment>
         );
     }
 }

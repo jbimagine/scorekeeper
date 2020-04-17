@@ -88,37 +88,60 @@ export default class PlayerCard extends React.Component {
         let sumOfRounds = this[player].rounds.reduce((a, b) => { return a + b; }, 0)
 
         this.setState({ [player]: sumOfRounds });
+        console.log({ player: this.state[player] });
     }
 
     render() {
+        const { playersCards } = this.props;
         return (
-            <>
-                {
-                    Object.keys(this.props.createPlayers()).map(key => {
-                        let player = Object.keys(this.props.createPlayers()[key]);
-                        return (
-                            <MainCntnr key={player} player={player} >
-                                <IconCntnr
-                                    onClick={() => this.handleValue(player)}
-                                >
-                                    <Icon name='minusCirleIcon' style={{cursor: 'pointer'}} />
-                                </IconCntnr>
-                                <PlayerName>{player[0]}</PlayerName>
-                                <PlayerScore
-                                    ref={el => this[player] = el}
-                                >
-                                    {this.state[player] ? this.state[player] : 0}
-                                </PlayerScore>
-                                <IconCntnr
-                                    onClick={() => this.handleValue(player, true)}
-                                >
-                                    <Icon name='plusCircleIcon' style={{cursor: 'pointer'}} />
-                                </IconCntnr>
-                            </MainCntnr>
-                        )
-                    })
-                }
-            </>
-        );
+            <React.Fragment>
+                {Object.keys(playersCards).map((key, index) => {
+                    const playerName = playersCards[key].label;
+                    return (
+                        <MainCntnr key={`${playerName}-${index}`}>
+                            <IconCntnr>
+                                <Icon name='minusCirleIcon' style={{cursor: 'pointer'}} />
+                            </IconCntnr>
+                            <PlayerName>{playerName}</PlayerName>
+                            <PlayerScore>
+                                0
+                            </PlayerScore>
+                            <IconCntnr>
+                                <Icon name='plusCircleIcon' style={{cursor: 'pointer'}} />
+                            </IconCntnr>
+                        </MainCntnr>
+                    )
+                })}
+            </React.Fragment>
+        )
+        // return (
+        //     <>
+        //         {
+        //             Object.keys(this.props.createPlayersCards()).map(key => {
+        //                 let player = Object.keys(this.props.createPlayersCards()[key]);
+        //                 return (
+        //                     <MainCntnr key={player} player={player} >
+        //                         <IconCntnr
+        //                             // onClick={() => this.handleValue(player)}
+        //                         >
+        //                             <Icon name='minusCirleIcon' style={{cursor: 'pointer'}} />
+        //                         </IconCntnr>
+        //                         <PlayerName>{player[0]}</PlayerName>
+        //                         <PlayerScore
+        //                             ref={el => this[player] = el}
+        //                         >
+        //                             {this.state[player] ? this.state[player] : 0}
+        //                         </PlayerScore>
+        //                         <IconCntnr
+        //                             // onClick={() => this.handleValue(player, true)}
+        //                         >
+        //                             <Icon name='plusCircleIcon' style={{cursor: 'pointer'}} />
+        //                         </IconCntnr>
+        //                     </MainCntnr>
+        //                 )
+        //             })
+        //         }
+        //     </>
+        // );
     }
 }

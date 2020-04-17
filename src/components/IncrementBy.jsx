@@ -83,7 +83,7 @@ export default class IncrementBy extends React.Component {
 
         const hasEmptyValue = incrementBy === '';
         return (
-            <>
+            <React.Fragment>
                 <IncremetnCntnr>
                     {hasEmptyValue && <WarningContainer>Cannot have an empty value.  Default value will be set</WarningContainer>}
                     <IncrementBody>
@@ -97,7 +97,7 @@ export default class IncrementBy extends React.Component {
                         />
                     </IncrementBody>
                 </IncremetnCntnr>
-            </>
+            </React.Fragment>
         );
     }
 }
