@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 
 import Icon from '../icons/index';
+import { padNumber } from '../utils/utils';
 
 export const HeaderHeight = 80;
 
@@ -27,6 +28,13 @@ const TitleCntnr = styled.div`
 const Title = styled.div`
 `;
 
+const SubTitle = styled.div`
+	font-size: 18px;
+	grid-column: 2;
+	justify-self: center;
+	margin-top: 8px;
+`;
+
 const SettingsCntnr = styled.div`
   ${'' /* background: purple; */}
   display: grid;
@@ -41,14 +49,15 @@ const IconCntnr = styled.div`
     display: flex;
     justify-content: ${props => props.justifyContent ? props.justifyContent : 'center'};
     align-items: center;
-    ${'' /* &:last-child {
-        background: brown;
-    } */}
 `;
 
 export default class HeaderContent extends React.Component {
 	render() {
-		const { createPlayersCards, resetPlayersData } = this.props;
+		const {
+			createPlayersCards,
+			currentRound,
+			resetPlayersData,
+		} = this.props;
 
 		return (
 			<MainCntnr>
@@ -72,6 +81,7 @@ export default class HeaderContent extends React.Component {
 						<Icon name='plusIcon' style={{ cursor: 'pointer' }} />
 					</IconCntnr>
 				</SettingsCntnr>
+				<SubTitle>Round: {padNumber(currentRound)}</SubTitle>
 			</MainCntnr>
 		);
 	}

@@ -5,6 +5,7 @@ import IncrementBy from './IncrementBy.jsx';
 import styled from 'styled-components/macro';
 import { IncrementFooterHeight } from './IncrementBy.jsx';
 import { HeaderHeight } from './HeaderContent.jsx';
+import { padNumber } from '../utils/utils';
 
 const PlayerContainerMargin = 40;
 const DEFAULT_INCREMENT_NUM = '10';
@@ -21,12 +22,7 @@ export default class Main extends React.Component {
         playersCount: 0,
         incrementBy: DEFAULT_INCREMENT_NUM,
         playersCards: {},
-    }
-
-    // adds a zero to the front of any player's number less than 10
-    // eg Player 1 will be Player 01
-    padNumber = (number) => {
-        return (number < 10 ? '0' : '') + number
+        currentRound: 1,
     }
 
     createPlayersCards = () => {
@@ -37,7 +33,7 @@ export default class Main extends React.Component {
         playersCards = Object.assign(playersCards, {
             ...playersCards,
             [playersCount]: {
-                label: 'Player ' + this.padNumber(playersCount),
+                label: 'Player ' + padNumber(playersCount),
                 rounds: {},
             }
         })
@@ -46,6 +42,10 @@ export default class Main extends React.Component {
 
     resetPlayersData = () => {
         this.setState({ playersCards: {}, playersCount: 0 })
+    }
+
+    getCurrentRound = () => {
+
     }
 
     handleChange = (event) => {
@@ -61,24 +61,31 @@ export default class Main extends React.Component {
     }
 
     render() {
+        const {
+            currentRound,
+            incrementBy,
+            playersCards
+        } = this.state;
+
         return (
             <React.Fragment>
                 <HeaderContent
                     resetPlayersData={this.resetPlayersData}
                     createPlayersCards={this.createPlayersCards}
+                    currentRound={currentRound}
                 />
                 <PlayerCntnr>
                     {this.state.playersCount > 0 ?
                         <PlayerCard
                             createPlayersCards={this.createPlayersCards}
-                            incrementBy={this.state.incrementBy}
-                            playersCards={this.state.playersCards}
+                            incrementBy={incrementBy}
+                            playersCards={playersCards}
                         /> : null}
                 </PlayerCntnr>
                 <IncrementBy
                     handleBlur={this.handleBlur}
                     handleChange={this.handleChange}
-                    incrementBy={this.state.incrementBy}
+                    incrementBy={incrementBy}
                 />
             </React.Fragment>
         );
