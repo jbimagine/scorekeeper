@@ -26,23 +26,20 @@ export default class Main extends React.Component {
         this.setState({ playersCount: this.state.playersCount + 1 });
     }
 
+    // adds a zero to the front of any player's number less than 10
+    // eg Player 1 will be Player 01
     padNumber = (number) => {
         return (number < 10 ? '0' : '') + number
     }
 
-    addPlayers = () => {
+    createPlayers = () => {
         let numArray = [];
         let player = 0;
         for (let i = 0; i < this.state.playersCount; i++) {
             player += 1;
             numArray.push({ ['Player ' + this.padNumber(player)]: i + 1 });
         }
-
         return numArray;
-    }
-
-    createPlayers = () => {
-        return this.addPlayers();
     }
 
     resetPlayersCount = () => {
