@@ -14,8 +14,29 @@ const CombinedHeight = HeaderHeight + IncrementFooterHeight + PlayerContainerMar
 
 const PlayerCntnr = styled.div`
     height: calc(100vh - ${CombinedHeight}px );
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
     margin-bottom: ${PlayerContainerMargin}px;
+
+    &::-webkit-scrollbar {
+    width: 8px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+    background: transparent;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+    background: #adafcb;
+    border-radius: 6px;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+    background: #adafcb50;
+    }
 `;
 
 export default class Main extends React.Component {
