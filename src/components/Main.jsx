@@ -78,8 +78,9 @@ export default class Main extends React.Component {
 
     handleBlur = () => {
         const { incrementBy } = this.state;
+        const hasInvalidValue = incrementBy === '' || incrementBy <= 0;
 
-        if (incrementBy === '') {
+        if (hasInvalidValue) {
             this.setState({ incrementBy: DEFAULT_INCREMENT_NUM });
         }
     }

@@ -59,20 +59,9 @@ const WarningContainer = styled.div`
 `;
 
 const INCREMENT_OF_STR = 'Increment of: ';
-const DECREMENT_OF_STR = 'Decrement of: ';
-const NO_VALUE_STR = 'No valid value';
+const INVALID_VALUE_MESSAGE = 'Cannot have an empty, negative, or zero value.  Default value will be set';
 
 export default class IncrementBy extends React.Component {
-
-    handleIncrementDecrementStr = () => {
-        const { incrementBy } = this.props;
-        if (incrementBy > Number('0')) {
-            return INCREMENT_OF_STR;
-        } else if (incrementBy === '0' || incrementBy === '') {
-            return NO_VALUE_STR;
-        }
-        return DECREMENT_OF_STR;
-    }
 
     render() {
         const {
@@ -81,13 +70,13 @@ export default class IncrementBy extends React.Component {
             incrementBy
         } = this.props;
 
-        const hasEmptyValue = incrementBy === '';
+        const hasInvalidValue = incrementBy === '' || incrementBy <= 0;
         return (
             <React.Fragment>
                 <IncremetnCntnr>
-                    {hasEmptyValue && <WarningContainer>Cannot have an empty value.  Default value will be set</WarningContainer>}
+                    {hasInvalidValue && <WarningContainer>{INVALID_VALUE_MESSAGE}</WarningContainer>}
                     <IncrementBody>
-                        <IncrementContent>{this.handleIncrementDecrementStr()}</IncrementContent>
+                        <IncrementContent>{INCREMENT_OF_STR}</IncrementContent>
                         <Input
                             type={'number'}
                             value={incrementBy}
