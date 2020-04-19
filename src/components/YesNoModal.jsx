@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import closeIcon from '../imgs/close_icon.svg';
+import closeIcon from 'imgs/close_icon.svg';
 
 const ModalOverlay = styled.div`
     width: 100vw;

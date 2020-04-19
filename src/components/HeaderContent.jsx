@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import Icon from '../icons/index';
-import { padNumber } from '../utils/utils';
-import { HeaderHeight } from './constants';
+import Icon from 'icons/index';
+import { padNumber } from 'utils/utils';
+import { HeaderHeight } from 'components/constants';
 
 const MainCntnr = styled.div`
   height: ${HeaderHeight}px;

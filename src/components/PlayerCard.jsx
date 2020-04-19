@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import { CombinedHeight, PlayerContainerMargin } from './constants';
-import Icon from '../icons/index';
+import { CombinedHeight, PlayerContainerMargin } from 'components/constants';
+import Icon from 'icons/index';
 
 const PlayerContainer = styled.div`
     height: calc(100vh - ${CombinedHeight}px );

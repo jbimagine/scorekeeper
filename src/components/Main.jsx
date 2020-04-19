@@ -1,11 +1,11 @@
 import React from 'react';
 
-import HeaderContent from './HeaderContent.jsx';
-import IncrementBy from './IncrementBy.jsx';
-import PlayerCard from './PlayerCard.jsx';
-import YesNoModal from './YesNoModal.jsx';
-import { padNumber } from '../utils/utils';
-import { DEFAULT_INCREMENT_NUM } from './constants';
+import HeaderContent from 'components/HeaderContent.jsx';
+import IncrementBy from 'components/IncrementBy.jsx';
+import PlayerCard from 'components/PlayerCard.jsx';
+import YesNoModal from 'components/YesNoModal.jsx';
+import { padNumber } from 'utils/utils';
+import { DEFAULT_INCREMENT_NUM } from 'components/constants';
 
 export default class Main extends React.Component {
     state = {
