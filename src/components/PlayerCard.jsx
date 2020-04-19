@@ -21,13 +21,13 @@ const PlayerContainer = styled.div`
 
     /* Handle */
     &::-webkit-scrollbar-thumb {
-    background: #adafcb;
+    background: #adafcb70;
     border-radius: 6px;
     }
 
     /* Handle on hover */
     &::-webkit-scrollbar-thumb:hover {
-    background: #adafcb50;
+    background: #adafcb;
     }
 `;
 
