@@ -3,8 +3,7 @@ import styled from 'styled-components/macro';
 
 import Icon from '../icons/index';
 import { padNumber } from '../utils/utils';
-
-export const HeaderHeight = 80;
+import { HeaderHeight } from './constants';
 
 const MainCntnr = styled.div`
   height: ${HeaderHeight}px;

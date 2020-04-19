@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-
-export const IncrementFooterHeight = 80;
+import { IncrementFooterHeight } from './constants';
 
 const IncremetnCntnr = styled.div`
     width: 100vw;

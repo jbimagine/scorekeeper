@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import { CombinedHeight, PlayerContainerMargin } from './Main.jsx';
+import { CombinedHeight, PlayerContainerMargin } from './constants';
 import Icon from '../icons/index';
 
 const PlayerContainer = styled.div`
-    height: ${props => props.height};
+    height: calc(100vh - ${CombinedHeight}px );
     overflow-y: scroll;
     overflow-x: hidden;
-    margin-bottom: ${props => props.margin};
+    margin-bottom: ${PlayerContainerMargin}px;
 
     &::-webkit-scrollbar {
     width: 8px;
@@ -120,34 +120,28 @@ export default class PlayerCard extends React.Component {
 
     render() {
         const { playersCards, playersCount } = this.props;
-        if (playersCount > 0) {
-            return (
-                <PlayerContainer
-                    height={`calc(100vh - ${CombinedHeight}px)`}
-                    margin={PlayerContainerMargin + 'px'}
-                >
-                    {Object.keys(playersCards).map((key, index) => {
-                        const playerName = playersCards[key].label;
-                        return (
-                            <MainCntnr key={`${playerName}-${index}`}>
-                                <IconCntnr>
-                                    <Icon name='minusCirleIcon' style={{ cursor: 'pointer' }} />
-                                </IconCntnr>
-                                <PlayerName>{playerName}</PlayerName>
-                                <PlayerScore>
-                                    0
-                            </PlayerScore>
-                                <IconCntnr>
-                                    <Icon name='plusCircleIcon' style={{ cursor: 'pointer' }} />
-                                </IconCntnr>
-                            </MainCntnr>
-                        )
-                    })}
-                </PlayerContainer>
-            )
-        }
+        const hasPlayers = playersCount > 0;
         return (
-            null
+            <PlayerContainer>
+                {hasPlayers && Object.keys(playersCards).map((key, index) => {
+                    const playerName = playersCards[key].label;
+                    return (
+                        <MainCntnr key={`${playerName}-${index}`}>
+                            <IconCntnr>
+                                <Icon name='minusCirleIcon' style={{ cursor: 'pointer' }} />
+                            </IconCntnr>
+                            <PlayerName>{playerName}</PlayerName>
+                            <PlayerScore>
+                                0
+                            </PlayerScore>
+                            <IconCntnr>
+                                <Icon name='plusCircleIcon' style={{ cursor: 'pointer' }} />
+                            </IconCntnr>
+                        </MainCntnr>
+                    )
+                })}
+            </PlayerContainer>
         )
+
     }
 }

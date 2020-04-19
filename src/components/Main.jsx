@@ -1,16 +1,11 @@
 import React from 'react';
+
 import HeaderContent from './HeaderContent.jsx';
-import PlayerCard from './PlayerCard.jsx';
 import IncrementBy from './IncrementBy.jsx';
-import styled from 'styled-components/macro';
-import { IncrementFooterHeight } from './IncrementBy.jsx';
-import { HeaderHeight } from './HeaderContent.jsx';
+import PlayerCard from './PlayerCard.jsx';
 import YesNoModal from './YesNoModal.jsx';
 import { padNumber } from '../utils/utils';
-
-export const PlayerContainerMargin = 40;
-const DEFAULT_INCREMENT_NUM = '10';
-export const CombinedHeight = HeaderHeight + IncrementFooterHeight + PlayerContainerMargin;
+import { DEFAULT_INCREMENT_NUM } from './constants';
 
 export default class Main extends React.Component {
     state = {
