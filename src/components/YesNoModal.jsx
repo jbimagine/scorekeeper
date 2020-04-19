@@ -68,17 +68,17 @@ const CloseButton = styled.img`
     top: 0;
 `;
 
-export default function YesNoModal(props) {
+export default function YesNoModal({no, text, yes}) {
 
     return (
         <ModalOverlay>
             <ModalContainer>
-                <TextContainer>{props.text || 'Default text. Please replace with your own message'}</TextContainer>
+                <TextContainer>{text || 'Default text. Please replace with your own message'}</TextContainer>
                 <ButtonContainer>
-                    <Button onClick={props.yes}>Yes</Button>
-                    <Button onClick={props.no}>No</Button>
+                    <Button onClick={yes}>Yes</Button>
+                    <Button onClick={no}>No</Button>
                 </ButtonContainer>
-            <CloseButton onClick={props.no} src={closeIcon} alt={'close icon'} />
+            <CloseButton onClick={no} src={closeIcon} alt={'close icon'} />
             </ModalContainer>
         </ModalOverlay>
     )
