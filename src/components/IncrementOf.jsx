@@ -60,7 +60,7 @@ const WarningContainer = styled.div`
 const INCREMENT_OF_STR = 'Increment of: ';
 const INVALID_VALUE_MESSAGE = 'Cannot have an empty, negative, or zero value.  Default value will be set';
 
-export default class IncrementBy extends React.Component {
+export default class IncrementOf extends React.Component {
 
     render() {
         const {

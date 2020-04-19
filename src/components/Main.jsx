@@ -1,7 +1,7 @@
 import React from 'react';
 
 import HeaderContent from 'components/HeaderContent.jsx';
-import IncrementBy from 'components/IncrementBy.jsx';
+import IncrementOf from 'components/IncrementOf.jsx';
 import PlayerCard from 'components/PlayerCard.jsx';
 import YesNoModal from 'components/YesNoModal.jsx';
 import { padNumber } from 'utils/utils';
@@ -95,7 +95,7 @@ export default class Main extends React.Component {
                     playersCount={playersCount}
                     playersCards={playersCards}
                 />
-                <IncrementBy
+                <IncrementOf
                     handleBlur={this.handleBlur}
                     handleChange={this.handleChange}
                     incrementBy={incrementBy}
