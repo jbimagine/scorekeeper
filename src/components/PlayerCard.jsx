@@ -101,40 +101,39 @@ const Input = styled.input`
 
 export default class PlayerCard extends React.Component {
     state = {
-    }
-
-    handleValue = (player, increment = false) => {
-        const { incrementBy } = this.props;
-        if (!this[player].rounds) {
-            this[player].rounds = [];
-        }
-        const convertedIncrementOf = parseInt(incrementBy);
-
-        increment ? this[player].rounds.push(convertedIncrementOf) : this[player].rounds.push(- + convertedIncrementOf);
-
-        // Add up the values in the array to get the sum that is displayed in the dom
-        let sumOfRounds = this[player].rounds.reduce((a, b) => { return a + b; }, 0)
-
-        this.setState({ [player]: sumOfRounds });
+        editName: false,
     }
 
     render() {
-        const { playersCards, playersCount } = this.props;
+        const {
+            currentRound,
+            handleUpdatingPlayersScore,
+            playersCards,
+            playersCount
+        } = this.props;
         const hasPlayers = playersCount > 0;
         return (
             <PlayerContainer>
                 {hasPlayers && Object.keys(playersCards).map((key, index) => {
                     const playerName = playersCards[key].label;
+                    const playerRoundScore = playersCards[key].rounds;
                     return (
                         <MainCntnr key={`${playerName}-${index}`}>
-                            <IconCntnr>
+                            <IconCntnr onClick={() => handleUpdatingPlayersScore(key, false)}>
                                 <Icon name='minusCirleIcon' style={{ cursor: 'pointer' }} />
                             </IconCntnr>
-                            <PlayerName>{playerName}</PlayerName>
-                            <PlayerScore>
-                                0
+                            <PlayerName
+                                suppressContentEditableWarning
+                                contentEditable={this.state.editName}
+                                onBlur={() => this.setState({editName: false})}
+                                onDoubleClick={() => this.setState({ editName: true })}
+                            >
+                                {playerName}
+                            </PlayerName>
+                            <PlayerScore ref={el => this[key] = el}>
+                                {playerRoundScore[currentRound]}
                             </PlayerScore>
-                            <IconCntnr>
+                            <IconCntnr  onClick={() => handleUpdatingPlayersScore(key, true)}>
                                 <Icon name='plusCircleIcon' style={{ cursor: 'pointer' }} />
                             </IconCntnr>
                         </MainCntnr>

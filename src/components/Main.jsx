@@ -25,7 +25,8 @@ export default class Main extends React.Component {
             ...playersCards,
             [playersCount]: {
                 label: 'Player ' + padNumber(playersCount),
-                rounds: {},
+                rounds: ['null'],
+                isEditable: false,
             }
         })
         this.setState({ playersCards, playersCount });
@@ -68,6 +69,24 @@ export default class Main extends React.Component {
         this.setState({ showResetModal: false });
     }
 
+    handleUpdatingPlayersScore = (key, increment = false) => {
+        const { currentRound, incrementBy } = this.state;
+        const convertedIncrementOf = parseInt(incrementBy);
+
+        let playersCards = { ...this.state.playersCards };
+        let playerCard = playersCards[key];
+
+        if (!playerCard.rounds[currentRound]) {
+            playerCard.rounds[currentRound] = 0;
+        }
+        if (increment) {
+            playerCard.rounds[currentRound] = playerCard.rounds[currentRound] += convertedIncrementOf;
+        } else {
+            playerCard.rounds[currentRound] = playerCard.rounds[currentRound] -= convertedIncrementOf;
+        }
+        this.setState({ playersCards });
+    }
+
     render() {
         const {
             currentRound,
@@ -91,6 +110,8 @@ export default class Main extends React.Component {
                 />
                 <PlayerCard
                     createPlayersCards={this.createPlayersCards}
+                    currentRound={currentRound}
+                    handleUpdatingPlayersScore={this.handleUpdatingPlayersScore}
                     incrementBy={incrementBy}
                     playersCount={playersCount}
                     playersCards={playersCards}
