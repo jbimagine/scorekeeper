@@ -8,36 +8,9 @@ import { HeaderHeight } from './HeaderContent.jsx';
 import YesNoModal from './YesNoModal.jsx';
 import { padNumber } from '../utils/utils';
 
-const PlayerContainerMargin = 40;
+export const PlayerContainerMargin = 40;
 const DEFAULT_INCREMENT_NUM = '10';
-const CombinedHeight = HeaderHeight + IncrementFooterHeight + PlayerContainerMargin;
-
-const PlayerCntnr = styled.div`
-    height: calc(100vh - ${CombinedHeight}px );
-    overflow-y: scroll;
-    overflow-x: hidden;
-    margin-bottom: ${PlayerContainerMargin}px;
-
-    &::-webkit-scrollbar {
-    width: 8px;
-    }
-
-    /* Track */
-    &::-webkit-scrollbar-track {
-    background: transparent;
-    }
-
-    /* Handle */
-    &::-webkit-scrollbar-thumb {
-    background: #adafcb;
-    border-radius: 6px;
-    }
-
-    /* Handle on hover */
-    &::-webkit-scrollbar-thumb:hover {
-    background: #adafcb50;
-    }
-`;
+export const CombinedHeight = HeaderHeight + IncrementFooterHeight + PlayerContainerMargin;
 
 export default class Main extends React.Component {
     state = {
@@ -69,7 +42,11 @@ export default class Main extends React.Component {
     }
 
     getCurrentRound = () => {
+        return this.state.currentRound;
+    }
 
+    setCurrentRound = (round) => {
+        this.setState({ currentRound: round });
     }
 
     handleChange = (event) => {
@@ -101,6 +78,7 @@ export default class Main extends React.Component {
             currentRound,
             incrementBy,
             playersCards,
+            playersCount,
             showResetModal,
         } = this.state;
 
@@ -116,14 +94,12 @@ export default class Main extends React.Component {
                     handleShowingResetWarningModal={this.handleShowingResetWarningModal}
                     currentRound={currentRound}
                 />
-                <PlayerCntnr>
-                    {this.state.playersCount > 0 ?
-                        <PlayerCard
-                            createPlayersCards={this.createPlayersCards}
-                            incrementBy={incrementBy}
-                            playersCards={playersCards}
-                        /> : null}
-                </PlayerCntnr>
+                <PlayerCard
+                    createPlayersCards={this.createPlayersCards}
+                    incrementBy={incrementBy}
+                    playersCount={playersCount}
+                    playersCards={playersCards}
+                />
                 <IncrementBy
                     handleBlur={this.handleBlur}
                     handleChange={this.handleChange}

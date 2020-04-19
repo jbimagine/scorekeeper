@@ -1,7 +1,35 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
+import { CombinedHeight, PlayerContainerMargin } from './Main.jsx';
 import Icon from '../icons/index';
+
+const PlayerContainer = styled.div`
+    height: ${props => props.height};
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin-bottom: ${props => props.margin};
+
+    &::-webkit-scrollbar {
+    width: 8px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+    background: transparent;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+    background: #adafcb;
+    border-radius: 6px;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+    background: #adafcb50;
+    }
+`;
 
 const MainCntnr = styled.div`
     color: #FFF;
@@ -88,60 +116,38 @@ export default class PlayerCard extends React.Component {
         let sumOfRounds = this[player].rounds.reduce((a, b) => { return a + b; }, 0)
 
         this.setState({ [player]: sumOfRounds });
-        console.log({ player: this.state[player] });
     }
 
     render() {
-        const { playersCards } = this.props;
-        return (
-            <React.Fragment>
-                {Object.keys(playersCards).map((key, index) => {
-                    const playerName = playersCards[key].label;
-                    return (
-                        <MainCntnr key={`${playerName}-${index}`}>
-                            <IconCntnr>
-                                <Icon name='minusCirleIcon' style={{cursor: 'pointer'}} />
-                            </IconCntnr>
-                            <PlayerName>{playerName}</PlayerName>
-                            <PlayerScore>
-                                0
+        const { playersCards, playersCount } = this.props;
+        if (playersCount > 0) {
+            return (
+                <PlayerContainer
+                    height={`calc(100vh - ${CombinedHeight}px)`}
+                    margin={PlayerContainerMargin + 'px'}
+                >
+                    {Object.keys(playersCards).map((key, index) => {
+                        const playerName = playersCards[key].label;
+                        return (
+                            <MainCntnr key={`${playerName}-${index}`}>
+                                <IconCntnr>
+                                    <Icon name='minusCirleIcon' style={{ cursor: 'pointer' }} />
+                                </IconCntnr>
+                                <PlayerName>{playerName}</PlayerName>
+                                <PlayerScore>
+                                    0
                             </PlayerScore>
-                            <IconCntnr>
-                                <Icon name='plusCircleIcon' style={{cursor: 'pointer'}} />
-                            </IconCntnr>
-                        </MainCntnr>
-                    )
-                })}
-            </React.Fragment>
+                                <IconCntnr>
+                                    <Icon name='plusCircleIcon' style={{ cursor: 'pointer' }} />
+                                </IconCntnr>
+                            </MainCntnr>
+                        )
+                    })}
+                </PlayerContainer>
+            )
+        }
+        return (
+            null
         )
-        // return (
-        //     <>
-        //         {
-        //             Object.keys(this.props.createPlayersCards()).map(key => {
-        //                 let player = Object.keys(this.props.createPlayersCards()[key]);
-        //                 return (
-        //                     <MainCntnr key={player} player={player} >
-        //                         <IconCntnr
-        //                             // onClick={() => this.handleValue(player)}
-        //                         >
-        //                             <Icon name='minusCirleIcon' style={{cursor: 'pointer'}} />
-        //                         </IconCntnr>
-        //                         <PlayerName>{player[0]}</PlayerName>
-        //                         <PlayerScore
-        //                             ref={el => this[player] = el}
-        //                         >
-        //                             {this.state[player] ? this.state[player] : 0}
-        //                         </PlayerScore>
-        //                         <IconCntnr
-        //                             // onClick={() => this.handleValue(player, true)}
-        //                         >
-        //                             <Icon name='plusCircleIcon' style={{cursor: 'pointer'}} />
-        //                         </IconCntnr>
-        //                     </MainCntnr>
-        //                 )
-        //             })
-        //         }
-        //     </>
-        // );
     }
 }
