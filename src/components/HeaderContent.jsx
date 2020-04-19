@@ -8,7 +8,6 @@ import { HeaderHeight } from 'components/constants';
 const MainCntnr = styled.div`
   height: ${HeaderHeight}px;
   width: 100vw;
-  ${'' /* background: blue; */}
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
   padding: 16px;
@@ -18,7 +17,6 @@ const MainCntnr = styled.div`
 `;
 
 const TitleCntnr = styled.div`
-  ${'' /* background: red; */}
   display: grid;
   justify-items: center;
   align-content: center;
@@ -35,7 +33,6 @@ const SubTitle = styled.div`
 `;
 
 const SettingsCntnr = styled.div`
-  ${'' /* background: purple; */}
   display: grid;
   grid-template-columns: ${props => props.gridColumns ? props.gridColumns : '1fr 1fr'};
   justify-items: center;
