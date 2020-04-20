@@ -53,6 +53,7 @@ const IconCntnr = styled.div`
 const PlayerName = styled.div`
     width: 100%;
     padding-left: 16px;
+    cursor: pointer;
 `;
 
 const PlayerScore = styled.div`
@@ -100,23 +101,22 @@ const Input = styled.input`
 `;
 
 export default class PlayerCard extends React.Component {
-    state = {
-        editName: false,
-    }
-
     render() {
         const {
+            editPlayersName,
             currentRound,
             handleUpdatingPlayersScore,
             playersCards,
-            playersCount
+            playersCount,
+            setPlayersName,
         } = this.props;
         const hasPlayers = playersCount > 0;
         return (
             <PlayerContainer>
                 {hasPlayers && Object.keys(playersCards).map((key, index) => {
-                    const playerName = playersCards[key].label;
+                    const playerName = playersCards[key].defaultLabel;
                     const playerRoundScore = playersCards[key].rounds;
+                    const isPlayerNameEditable = playersCards[key].isEditable;
                     return (
                         <MainCntnr key={`${playerName}-${index}`}>
                             <IconCntnr onClick={() => handleUpdatingPlayersScore(key, false)}>
@@ -124,13 +124,16 @@ export default class PlayerCard extends React.Component {
                             </IconCntnr>
                             <PlayerName
                                 suppressContentEditableWarning
-                                contentEditable={this.state.editName}
-                                onBlur={() => this.setState({editName: false})}
-                                onDoubleClick={() => this.setState({ editName: true })}
+                                autoFocus
+                                id={'player-name-' + key}
+                                ref={el => this[key] = el}
+                                contentEditable={isPlayerNameEditable}
+                                onBlur={(e) => setPlayersName(e, key)}
+                                onClick={(e) => editPlayersName(e, key, false)}
                             >
                                 {playerName}
                             </PlayerName>
-                            <PlayerScore ref={el => this[key] = el}>
+                            <PlayerScore id={'player-score' + key}>
                                 {playerRoundScore[currentRound]}
                             </PlayerScore>
                             <IconCntnr  onClick={() => handleUpdatingPlayersScore(key, true)}>

@@ -64,7 +64,7 @@ export default class IncrementOf extends React.Component {
 
     render() {
         const {
-            handleBlur,
+            handleIncrementOfBlur,
             handleChange,
             incrementBy
         } = this.props;
@@ -80,7 +80,7 @@ export default class IncrementOf extends React.Component {
                             type={'number'}
                             value={incrementBy}
                             onChange={handleChange}
-                            onBlur={handleBlur}
+                            onBlur={handleIncrementOfBlur}
                             justifyItems='end'
                         />
                     </IncrementBody>

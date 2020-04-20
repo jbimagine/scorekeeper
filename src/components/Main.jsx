@@ -24,9 +24,11 @@ export default class Main extends React.Component {
         playersCards = Object.assign(playersCards, {
             ...playersCards,
             [playersCount]: {
-                label: 'Player ' + padNumber(playersCount),
-                rounds: ['null'],
+                defaultLabel: 'Player ' + padNumber(playersCount),
                 isEditable: false,
+                // Since we start rounds at one lets
+                // just set the first index(0) to null
+                rounds: ['null'],
             }
         })
         this.setState({ playersCards, playersCount });
@@ -49,7 +51,7 @@ export default class Main extends React.Component {
         this.setState({ incrementBy: event.target.value });
     }
 
-    handleBlur = () => {
+    handleIncrementOfBlur = () => {
         const { incrementBy } = this.state;
         const hasInvalidValue = incrementBy === '' || incrementBy <= 0;
 
@@ -87,6 +89,34 @@ export default class Main extends React.Component {
         this.setState({ playersCards });
     }
 
+    editPlayersName = (event, key, isDisabled) => {
+        const playersCards = { ...this.state.playersCards };
+        const playerCard = playersCards[key];
+
+        if (!isDisabled) {
+            playerCard.isEditable = true;
+            setTimeout(() => {
+                if (document.activeElement !== event) {
+                    playerCard.isEditable = false;
+                }
+            }, 300);
+        }
+        this.setState({ playersCards });
+    }
+
+    setPlayersName = (event, key) => {
+        const playerName = event.target;
+        const playersCards = { ...this.state.playersCards };
+        const playerCard = playersCards[key];
+
+        if (playerName.innerText === '') {
+            playerName.innerText = playerCard.defaultLabel;
+        } else {
+            playerCard.defaultLabel = playerName.innerText;
+        }
+        this.setState({ playersCards });
+    }
+
     render() {
         const {
             currentRound,
@@ -109,15 +139,17 @@ export default class Main extends React.Component {
                     currentRound={currentRound}
                 />
                 <PlayerCard
+                    editPlayersName={this.editPlayersName}
                     createPlayersCards={this.createPlayersCards}
                     currentRound={currentRound}
                     handleUpdatingPlayersScore={this.handleUpdatingPlayersScore}
                     incrementBy={incrementBy}
                     playersCount={playersCount}
                     playersCards={playersCards}
+                    setPlayersName={this.setPlayersName}
                 />
                 <IncrementOf
-                    handleBlur={this.handleBlur}
+                    handleIncrementOfBlur={this.handleIncrementOfBlur}
                     handleChange={this.handleChange}
                     incrementBy={incrementBy}
                 />
