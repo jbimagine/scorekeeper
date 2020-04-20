@@ -124,7 +124,6 @@ export default class PlayerCard extends React.Component {
                             </IconCntnr>
                             <PlayerName
                                 suppressContentEditableWarning
-                                autoFocus
                                 id={'player-name-' + key}
                                 ref={el => this[key] = el}
                                 contentEditable={isPlayerNameEditable}
