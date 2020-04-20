@@ -127,8 +127,8 @@ export default class PlayerCard extends React.Component {
                                 id={'player-name-' + key}
                                 ref={el => this[key] = el}
                                 contentEditable={isPlayerNameEditable}
-                                onBlur={(e) => setPlayersName(e, key)}
-                                onClick={(e) => editPlayersName(e, key, false)}
+                                onBlur={() => setPlayersName(this, key)}
+                                onClick={() => editPlayersName(this, key)}
                             >
                                 {playerName}
                             </PlayerName>

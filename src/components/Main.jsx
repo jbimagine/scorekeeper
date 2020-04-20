@@ -89,23 +89,18 @@ export default class Main extends React.Component {
         this.setState({ playersCards });
     }
 
-    editPlayersName = (event, key, isDisabled) => {
-        const playersCards = { ...this.state.playersCards };
-        const playerCard = playersCards[key];
+    editPlayersName = (element, key) => {
+        element[key].contentEditable = true;
 
-        if (!isDisabled) {
-            playerCard.isEditable = true;
-            setTimeout(() => {
-                if (document.activeElement !== event) {
-                    playerCard.isEditable = false;
-                }
-            }, 300);
-        }
-        this.setState({ playersCards });
+        setTimeout(function() {
+          if (document.activeElement !== element[key]) {
+              element[key].contentEditable = false;
+          }
+        }, 300);
     }
 
-    setPlayersName = (event, key) => {
-        const playerName = event.target;
+    setPlayersName = (element, key) => {
+        const playerName = element[key];
         const playersCards = { ...this.state.playersCards };
         const playerCard = playersCards[key];
 
@@ -114,6 +109,8 @@ export default class Main extends React.Component {
         } else {
             playerCard.defaultLabel = playerName.innerText;
         }
+
+        element[key].contentEditable = false;
         this.setState({ playersCards });
     }
 
