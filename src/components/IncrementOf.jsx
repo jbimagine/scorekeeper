@@ -48,6 +48,16 @@ const Input = styled.input`
     box-sizing:border-box;
     margin: 0 4px;
     padding: 0 4px;
+    text-align: center;
+
+    ::-webkit-inner-spin-button{
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    ::-webkit-outer-spin-button{
+        -webkit-appearance: none;
+        margin: 0;
+    }
 `;
 
 const WarningContainer = styled.div`
