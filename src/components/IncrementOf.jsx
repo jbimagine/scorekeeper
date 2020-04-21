@@ -28,12 +28,13 @@ const IncrementBody = styled.div`
     display: grid;
     align-items: center;
     font-size: 24px;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr auto;
 `;
 
 const IncrementContent = styled.div`
     display: grid;
     justify-items: ${props => props.justifyItems ? props.justifyItems : 'start'};
+    line-height: 24px;
 `
 
 const Input = styled.input`

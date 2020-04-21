@@ -32,11 +32,12 @@ const PlayerContainer = styled.div`
 `;
 
 const MainCntnr = styled.div`
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-gap: 16px;
     color: #FFF;
     font-size: 24px;
-    display: flex;
     width: 100vw;
-    justify-content: space-around;
     box-sizing: border-box;
     padding: 0 16px 24px 16px;
     align-items: center;
@@ -45,59 +46,27 @@ const MainCntnr = styled.div`
 const IconCntnr = styled.div`
     height: 100%;
     width: auto;
-    display: grid;
+    display: flex;
     justify-content: ${props => props.justifyContent ? props.justifyContent : 'center'};
     align-items: center;
 `;
 
-const PlayerName = styled.div`
+const PlayerRowContainer = styled.div`
     width: 100%;
-    padding-left: 16px;
+    align-items: center;
+    grid-template-columns: auto auto 1fr;
+    grid-gap: 16px;
+    display: grid;
+`;
+
+const PlayerName = styled.div`
+    width: auto;
     cursor: pointer;
+    grid-column: ${props => props.gridColumn};
 `;
 
 const PlayerScore = styled.div`
-    padding-right: 16px;
-`;
-
-const IncremetnCntnr = styled.div`
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    bottom: 24px;
-    color: #FFF;
-`;
-
-const IncrementBody = styled.div`
-    width: 90vw;
-    height: 60px;
-    box-sizing: border-box;
-    padding: 0 16px;
-    border: 1px solid #FFF;
-    display: grid;
-    align-items: center;
-    font-size: 24px;
-    grid-template-columns: 1fr 1fr;
-`;
-
-const IncrementContent = styled.div`
-    display: grid;
-    justify-items: ${props => props.justifyItems ? props.justifyItems : 'start'};
-`
-
-const Input = styled.input`
-    justify-self: ${props => props.justifyItems ? props.justifyItems : 'start'};
-    height: 30px;
-    width: 60px;
-    background: none;
-    border-radius: 2px;
-    color: #FFF;
-    font-size: 24px;
-    border: none;
-    box-sizing:border-box;
-    margin: 0 4px;
-    padding: 0 4px;
+    justify-self: end;
 `;
 
 export default class PlayerCard extends React.Component {
@@ -122,20 +91,25 @@ export default class PlayerCard extends React.Component {
                             <IconCntnr onClick={() => handleUpdatingPlayersScore(key, false)}>
                                 <Icon name='minusCirleIcon' style={{ cursor: 'pointer' }} />
                             </IconCntnr>
-                            <PlayerName
-                                suppressContentEditableWarning
-                                id={'player-name-' + key}
-                                ref={el => this[key] = el}
-                                contentEditable={isPlayerNameEditable}
-                                onBlur={() => setPlayersName(this, key)}
-                                onClick={() => editPlayersName(this, key)}
-                            >
-                                {playerName}
-                            </PlayerName>
-                            <PlayerScore id={'player-score' + key}>
-                                {playerRoundScore[currentRound]}
-                            </PlayerScore>
-                            <IconCntnr  onClick={() => handleUpdatingPlayersScore(key, true)}>
+                            <PlayerRowContainer>
+                                <PlayerName
+                                    suppressContentEditableWarning
+                                    id={'player-name-' + key}
+                                    ref={el => this[key] = el}
+                                    contentEditable={isPlayerNameEditable}
+                                    onBlur={() => setPlayersName(this, key)}
+                                    onClick={() => editPlayersName(this, key)}
+                                >
+                                    {playerName}
+                                </PlayerName>
+                                <IconCntnr>
+                                    <Icon name='chevronDown' style={{ cursor: 'pointer', width: '18px', height: '18px' }} />
+                                </IconCntnr>
+                                <PlayerScore id={'player-score' + key}>
+                                    {playerRoundScore[currentRound]}
+                                </PlayerScore>
+                            </PlayerRowContainer>
+                            <IconCntnr gridColumn='3' onClick={() => handleUpdatingPlayersScore(key, true)}>
                                 <Icon name='plusCircleIcon' style={{ cursor: 'pointer' }} />
                             </IconCntnr>
                         </MainCntnr>

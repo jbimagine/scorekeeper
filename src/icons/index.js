@@ -1,15 +1,17 @@
 import React from 'react';
-import styled from 'styled-components/macro';
 
-import PlusIcon from './PlusIcon';
-import ResetIcon from './ResetIcon';
-import RoundsIcon from './RoundsIcon';
-import PlusCircleIcon from './PlusCircleIcon';
-import MinusCirleIcon from './MinusCirleIcon';
-import SettingsIcon from './SettingsIcon';
+import ChevronDown from 'icons/ChevronDown';
+import PlusIcon from 'icons/PlusIcon';
+import ResetIcon from 'icons/ResetIcon';
+import RoundsIcon from 'icons/RoundsIcon';
+import PlusCircleIcon from 'icons/PlusCircleIcon';
+import MinusCirleIcon from 'icons/MinusCirleIcon';
+import SettingsIcon from 'icons/SettingsIcon';
 
 const Icon = props => {
     switch (props.name) {
+        case 'chevronDown':
+            return <ChevronDown {...props} />
         case "plusIcon":
             return <PlusIcon {...props} />;
         case "resetIcon":
